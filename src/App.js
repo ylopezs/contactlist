@@ -1,23 +1,36 @@
-import logo from './logo.svg';
 import './App.css';
+import useFetch from 'react-fetch-hook';
+import { useEffect, useState } from 'react';
+import Contacts from './Contacts';
 
 function App() {
+
+  const [ contactList, setContactlist ] = useState("");
+
+  useEffect(() => {
+    const url = 'https://jsonplaceholder.typicode.com/users'
+
+    const fetchContacts = async () => {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        //console.log(json);
+        setContactlist(json);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    return fetchContacts();
+
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+
+         {contactList.length >=1 && <Contacts contacts={contactList} />}
+      </div>
     </div>
   );
 }
