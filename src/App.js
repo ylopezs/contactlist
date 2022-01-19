@@ -1,5 +1,4 @@
-import './App.css';
-import useFetch from 'react-fetch-hook';
+import 'bootstrap/dist/css/bootstrap.css';
 import { useEffect, useState } from 'react';
 import Contacts from './Contacts';
 
@@ -14,7 +13,6 @@ function App() {
       try {
         const response = await fetch(url);
         const json = await response.json();
-        //console.log(json);
         setContactlist(json);
       } catch (error) {
         console.log("error", error);

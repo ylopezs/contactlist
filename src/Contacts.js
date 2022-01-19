@@ -1,5 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import Contact from "./Contact";
-import { useEffect } from 'react';
 
 const Contacts =({contacts})=>{
 
